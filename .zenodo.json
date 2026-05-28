@@ -1,9 +1,9 @@
 {
   "title": "YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches",
   "upload_type": "software",
-  "publication_date": "2026-05-22",
+  "publication_date": "2026-05-28",
   "version": "1.0.0",
-  "description": "DOI-pending public software release metadata for the multi-engine candidate-annotation, validation, and packaging pipeline supporting the Scientific Data Data Descriptor for Yongle Palace Taoist mural image patches. The local code package is MIT licensed and ready for public repository publication, but the public GitHub URL, v1.0.0 release tag, and software DOI must still be minted before formal journal submission.",
+  "description": "Public software release metadata for the multi-engine candidate-annotation, validation, and packaging pipeline supporting the Scientific Data Data Descriptor for Yongle Palace Taoist mural image patches. The public GitHub repository is https://github.com/lbiceice/yongleai-scidata-pipeline and the release tag is v1.0.0. A Zenodo software DOI should be minted after the GitHub release is published through Zenodo-GitHub integration.",
   "keywords": [
     "cultural heritage",
     "mural painting",
@@ -31,5 +31,5 @@
       "resource_type": "dataset"
     }
   ],
-  "notes": "External publication blockers remain: public repository URL, release tag v1.0.0, and software DOI. Do not upload this metadata as a final public record until those placeholders are closed."
+  "notes": "GitHub repository: https://github.com/lbiceice/yongleai-scidata-pipeline; release tag: v1.0.0. The Zenodo software DOI will be minted by Zenodo after this GitHub release is published and archived."
 }

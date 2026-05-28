@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches"
-message: "Please cite both the dataset (Zenodo DOI 10.5281/zenodo.19718760) and the software release identified below. Replace [PENDING_GITHUB_URL], [PENDING_TAG_v1.0.0], and [PENDING_SOFTWARE_DOI] before public software publication."
+message: "Please cite both the dataset (Zenodo DOI 10.5281/zenodo.19718760) and this software release. A Zenodo software DOI should be added after archiving release v1.0.0."
 type: software
 authors:
   - family-names: Liang
@@ -9,7 +9,7 @@ authors:
     orcid: "https://orcid.org/0009-0007-5344-0594"
     email: "lbice@gzgs.edu.cn"
 version: "1.0.0"
-date-released: "2026-05-22"
+date-released: "2026-05-28"
 keywords:
   - cultural heritage
   - mural painting
@@ -24,11 +24,8 @@ keywords:
   - data descriptor
   - Krippendorff's alpha
 license: MIT
-repository-code: "[PENDING_GITHUB_URL]"
+repository-code: "https://github.com/lbiceice/yongleai-scidata-pipeline"
 identifiers:
-  - type: doi
-    value: "[PENDING_SOFTWARE_DOI]"
-    description: "Software DOI to be minted via Zenodo-GitHub release integration."
   - type: doi
     value: "10.5281/zenodo.19718760"
     description: "Companion dataset DOI; publication status must be confirmed before journal submission."
@@ -49,5 +46,4 @@ preferred-citation:
       orcid: "https://orcid.org/0009-0007-5344-0594"
   year: 2026
   version: "1.0.0"
-  url: "[PENDING_GITHUB_URL]"
-  doi: "[PENDING_SOFTWARE_DOI]"
+  url: "https://github.com/lbiceice/yongleai-scidata-pipeline/releases/tag/v1.0.0"

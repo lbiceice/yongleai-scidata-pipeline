@@ -1,6 +1,6 @@
 # Public Code Release Candidate (Scientific Data)
 
-This package is a DOI-pending public-code-release candidate derived from the frozen reviewer code snapshot prepared for the Yongle Palace mural Data Descriptor workflow.
+This package is the public-code-release candidate derived from the frozen reviewer code snapshot prepared for the Yongle Palace mural Data Descriptor workflow.
 
 It contains the scripts, configuration files, dependency specification, and selected technical notes needed to inspect the release-building and validation workflow without requiring direct access to the original live working repository.
 
@@ -10,7 +10,7 @@ Local metadata was aligned on 2026-05-23 with the PaperSpine M3 manuscript packa
 
 `YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches`
 
-The package is license-ready and locally staged, but it is not yet externally published. Before formal journal submission, replace the pending placeholders in `CITATION.cff` with the live GitHub repository URL, the `v1.0.0` release tag, and the Zenodo software DOI.
+The package is staged at `https://github.com/lbiceice/yongleai-scidata-pipeline` with release tag `v1.0.0`. Before formal journal submission, publish the GitHub release after enabling Zenodo-GitHub integration and add the resulting Zenodo software DOI.
 
 ## Included
 
@@ -54,9 +54,8 @@ root) before running.
 - caches and compiled artifacts
 - large intermediate outputs
 - the `.git` directory
-- a live public Git repository URL
 - a DOI-backed software record
 
 ## Use
 
-This package is intended as the staging object for a future public software release. Readers should start with `PUBLIC_CODE_RELEASE_STATUS_20260423.md` and `MINIMAL_REPRODUCTION_WORKFLOW.md`, then inspect the referenced scripts together with `checksums_sha256.tsv`, `File_Inventory.csv`, `PACKAGE_SUMMARY.json`, and `CODE_RELEASE_METADATA_20260423.json`. The underlying frozen submission-stage snapshot is versioned internally as `v1.0.0-submission-review`. Before formal publication, this candidate should be paired with a public Git repository URL, a `v1.0.0` release tag, and a DOI-backed software archive.
+Readers should start with `PUBLIC_CODE_RELEASE_STATUS_20260423.md` and `MINIMAL_REPRODUCTION_WORKFLOW.md`, then inspect the referenced scripts together with `checksums_sha256.tsv`, `File_Inventory.csv`, `PACKAGE_SUMMARY.json`, and `CODE_RELEASE_METADATA_20260423.json`. The underlying frozen submission-stage snapshot is versioned internally as `v1.0.0-submission-review`. The public repository URL and `v1.0.0` tag are now available; the remaining external closure item is the DOI-backed Zenodo software archive.

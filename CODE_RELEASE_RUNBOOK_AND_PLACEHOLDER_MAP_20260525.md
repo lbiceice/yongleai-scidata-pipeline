@@ -57,9 +57,9 @@ You now have: **GitHub URL**, **tag `v1.0.0`**, **software DOI**. Close the plac
 
 ## STEP 3 — Placeholder-closure map (replace everywhere, once)
 
-Replace `[PENDING_GITHUB_URL]`, `[PENDING_TAG_v1.0.0]` (= `v1.0.0`), `[PENDING_SOFTWARE_DOI]`:
+Replace `https://github.com/lbiceice/yongleai-scidata-pipeline`, `v1.0.0` (= `v1.0.0`), `<Zenodo software DOI after archive>`:
 
-**A. Literal `[PENDING_*]` tokens**
+**A. Former placeholder tokens**
 - `04_CODE_AND_REPRODUCTION/当前代码公开候选包_目录_20260423/CITATION.cff` (this package — ship this file)
 - same dir `.zenodo.json` (prose note about pending placeholders)
 - `…/PaperSpine_M3_final_paper_20260522/citation_cff_patch_20260522.cff` (PaperSpine source — optional)
@@ -99,7 +99,7 @@ were accessed via the OpenAI-compatible gptsapi.net proxy; Qwen via Alibaba Dash
 - [ ] STEP 0 sanitization committed; secret re-scan clean.
 - [ ] GitHub public, README/LICENSE/CITATION render.
 - [ ] `v1.0.0` tag + software DOI resolve (test `curl -sI https://doi.org/<software_doi>` → 302).
-- [ ] All `[PENDING_*]` replaced (grep the package returns nothing).
+- [ ] All placeholder tokens replaced (grep the package returns nothing).
 - [ ] Manuscript EN+ZH Code Availability updated; `_WITH_FIGURES_20260525.docx` regenerated.
 - [ ] Gate docs Code Availability = READY.
 - [ ] Dataset DOI also published (separate blocker) and consistent.
