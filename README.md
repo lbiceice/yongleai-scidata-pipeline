@@ -12,6 +12,8 @@ Local metadata was aligned on 2026-05-23 with the PaperSpine M3 manuscript packa
 
 The package is staged at `https://github.com/lbiceice/yongleai-scidata-pipeline` with release tag `v1.0.0`. Before formal journal submission, publish the GitHub release after enabling Zenodo-GitHub integration and add the resulting Zenodo software DOI.
 
+Companion dataset DOI: [`10.5281/zenodo.19718760`](https://doi.org/10.5281/zenodo.19718760).
+
 ## Included
 
 - `scripts/`: selected Python scripts used for STEP2 tiling, STEP3/STEP4 transport, release assembly, and validation.
