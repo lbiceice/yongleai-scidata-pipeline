@@ -39,6 +39,6 @@ By submitting this request, the requester confirms that they:
 
 Send the completed request to:
 
-- `lbice@gzgs.edu.cn`
+- `vincentdsnail@gmail.com`
 
 The target for an initial response is 15 business days.

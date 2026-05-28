@@ -24,7 +24,7 @@ It does **not** release:
 
 Requests for the protected image layer should be directed to the corresponding author:
 
-- **Contact:** `lbice@gzgs.edu.cn`
+- **Contact:** `vincentdsnail@gmail.com`
 - **Institution:** Guangzhou College of Technology and Business
 
 To support review, requests should include:

@@ -13,9 +13,9 @@ type: software
 authors:
   - family-names: Liang
     given-names: Bingbing
-    affiliation: "Guangzhou College of Technology and Business; Faculty of Fine and Applied Arts, Khon Kaen University (PhD researcher)"
+    affiliation: "AI Engineering College, Guangzhou College of Technology and Business; Faculty of Fine and Applied Arts, Khon Kaen University (PhD student in Culture, Fine Arts and Design Research)"
     orcid: "https://orcid.org/0009-0007-5344-0594"
-    email: "lbice@gzgs.edu.cn"
+    email: "vincentdsnail@gmail.com"
 version: "1.0.0"
 date-released: "2026-05-28"
 keywords:

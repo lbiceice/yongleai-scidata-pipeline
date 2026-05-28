@@ -7,7 +7,7 @@ This template records the minimum non-redistribution terms for the protected ima
 - Data requester:
 - Affiliation:
 - Contact email:
-- Corresponding-author access contact: `lbice@gzgs.edu.cn`
+- Corresponding-author access contact: `vincentdsnail@gmail.com`
 
 ## Covered material
 
