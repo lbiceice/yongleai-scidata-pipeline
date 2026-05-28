@@ -6,11 +6,11 @@ It contains the scripts, configuration files, dependency specification, and sele
 
 ## Current publication status
 
-Local metadata was aligned on 2026-05-23 with the PaperSpine M3 manuscript package. The intended public software release version is `v1.0.0`, and the software title is:
+Local metadata was aligned on 2026-05-23 with the PaperSpine M3 manuscript package. The DOI-backed public software release version is `v1.0.1`, and the software title is:
 
 `YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches`
 
-The package is public at `https://github.com/lbiceice/yongleai-scidata-pipeline` with release tag `v1.0.0`. The GitHub release has been published; the DOI-backed Zenodo software archive remains the remaining external closure item until Zenodo exposes the software DOI.
+The package is public at `https://github.com/lbiceice/yongleai-scidata-pipeline`. Release `v1.0.0` remains the first public GitHub release; release `v1.0.1` is the Zenodo metadata-fix release intended for DOI-backed software archiving.
 
 Companion dataset DOI: [`10.5281/zenodo.19718760`](https://doi.org/10.5281/zenodo.19718760).
 
@@ -60,4 +60,4 @@ root) before running.
 
 ## Use
 
-Readers should start with `PUBLIC_CODE_RELEASE_STATUS_20260423.md` and `MINIMAL_REPRODUCTION_WORKFLOW.md`, then inspect the referenced scripts together with `checksums_sha256.tsv`, `File_Inventory.csv`, `PACKAGE_SUMMARY.json`, and `CODE_RELEASE_METADATA_20260423.json`. The underlying frozen submission-stage snapshot is versioned internally as `v1.0.0-submission-review`. The public repository URL and `v1.0.0` tag are now available; the remaining external closure item is the DOI-backed Zenodo software archive.
+Readers should start with `PUBLIC_CODE_RELEASE_STATUS_20260423.md` and `MINIMAL_REPRODUCTION_WORKFLOW.md`, then inspect the referenced scripts together with `checksums_sha256.tsv`, `File_Inventory.csv`, `PACKAGE_SUMMARY.json`, and `CODE_RELEASE_METADATA_20260423.json`. The underlying frozen submission-stage snapshot is versioned internally as `v1.0.0-submission-review`. The public repository URL and `v1.0.1` tag are now available; the remaining external closure item is the DOI-backed Zenodo software archive.

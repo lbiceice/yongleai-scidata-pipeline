@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches"
-message: "Please cite both the dataset (Zenodo DOI 10.5281/zenodo.19718760) and this software release. A Zenodo software DOI should be added after archiving release v1.0.0."
+message: "Please cite both the dataset (Zenodo DOI 10.5281/zenodo.19718760) and this software release. A Zenodo software DOI should be added after archiving release v1.0.1."
 type: software
 authors:
   - family-names: Liang
@@ -8,7 +8,7 @@ authors:
     affiliation: "Guangzhou College of Technology and Business; Faculty of Fine and Applied Arts, Khon Kaen University (PhD researcher)"
     orcid: "https://orcid.org/0009-0007-5344-0594"
     email: "lbice@gzgs.edu.cn"
-version: "1.0.0"
+version: "1.0.1"
 date-released: "2026-05-28"
 keywords:
   - cultural heritage
@@ -45,5 +45,5 @@ preferred-citation:
       given-names: Bingbing
       orcid: "https://orcid.org/0009-0007-5344-0594"
   year: 2026
-  version: "1.0.0"
-  url: "https://github.com/lbiceice/yongleai-scidata-pipeline/releases/tag/v1.0.0"
+  version: "1.0.1"
+  url: "https://github.com/lbiceice/yongleai-scidata-pipeline/releases/tag/v1.0.1"
