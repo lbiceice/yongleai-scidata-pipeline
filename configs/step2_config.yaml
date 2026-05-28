@@ -1,0 +1,58 @@
+# STEP2 切片配置
+# 创建时间: 2026-04-01
+# config_version: 1.0.0
+
+step: 2
+step_name: "切分 (Tiling / Patch Generation)"
+step_dir: "02_tiles"
+
+# === 切片参数 ===
+tiling:
+  patch_size: 512
+  stride: 358
+  overlap_pixels: 154  # 512 - 358 = 154
+  overlap_ratio: 0.3   # 154/512 ≈ 30%
+  edge_handling: "include"  # 包含边缘 patch（可能不足 512，用 numpy 裁剪）
+
+# === 输出格式 ===
+output:
+  format: "PNG"
+  compress_level: 1  # lossless, 低压缩等级以加速写入
+  color_mode: "RGB"
+  naming_pattern: "{source_id}_{x}_{y}.png"
+
+# === 数据集划分 ===
+split:
+  strategy: "source_level"  # 以原图为单位划分，防止数据泄漏
+  source_assignment:
+    yl_raw_001: "train"
+    yl_raw_003: "train"
+    yl_raw_005: "train"
+    yl_raw_004: "val"
+    yl_raw_002: "test"
+  actual_ratios:
+    train: 0.682  # 5082/7455
+    val: 0.166    # 1239/7455
+    test: 0.152   # 1134/7455
+  random_seed: null  # source-level split 是确定性分配，无需随机种子
+  deterministic: true  # 相同 source_assignment 保证 split 完全可复现，不会漂移
+  note: "5 张原图条件下 source-level 最优分配 (3:1:1)，确保无数据泄漏。无需随机种子，重跑 split 不会漂移。"
+
+# === 输出目录 ===
+output_dirs:
+  base: "02_tiles/STEP2_patch/images"
+  train: "02_tiles/STEP2_patch/images/train"
+  val: "02_tiles/STEP2_patch/images/val"
+  test: "02_tiles/STEP2_patch/images/test"
+
+# === 进度汇报 ===
+progress:
+  report_interval: 300  # 每 300 张打印一次进度
+
+# === 数据治理 ===
+governance:
+  require_manifest: true
+  require_split_manifest: true
+  require_run_log: true
+  require_qc: true
+  run_id_format: "run_{YYYYMMDD}_{HHMMSS}_tile"

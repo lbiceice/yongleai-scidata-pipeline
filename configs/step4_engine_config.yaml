@@ -1,0 +1,43 @@
+version: 1.0.0
+generated: '2026-04-03T13:54:43Z'
+run_id: step4_damage_init_20260403_203630
+key_source: env_var + .env.step4.local (never from chat)
+consensus_threshold: 2
+consensus_ready: true
+engines:
+  gemini:
+    display: Google Gemini
+    ready: true
+    key_var: GEMINI_API_KEY
+    key_status: found
+    url_var: GEMINI_BASE_URL
+    url_source: env
+    base_url: https://api.gptsapi.net
+    default_model: gemini-2.5-flash
+  claude:
+    display: Anthropic Claude
+    ready: true
+    key_var: ANTHROPIC_API_KEY
+    key_status: found
+    url_var: ANTHROPIC_BASE_URL
+    url_source: env
+    base_url: https://api.gptsapi.net
+    default_model: claude-sonnet-4-20250514
+  openai:
+    display: OpenAI GPT
+    ready: true
+    key_var: OPENAI_API_KEY
+    key_status: found
+    url_var: OPENAI_BASE_URL
+    url_source: env
+    base_url: https://api.gptsapi.net/v1
+    default_model: gpt-4o
+  qwen:
+    display: Alibaba Qwen (DashScope)
+    ready: true
+    key_var: DASHSCOPE_API_KEY
+    key_status: found
+    url_var: QWEN_BASE_URL
+    url_source: default
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    default_model: qwen-vl-max

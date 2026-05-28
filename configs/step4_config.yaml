@@ -1,0 +1,104 @@
+# STEP4 损伤识别配置
+# 创建时间: 2026-04-02
+# config_version: 1.0.0
+
+step: 4
+step_name: "损伤识别 (Damage Recognition)"
+step_dir: "04_damage"
+
+# === 病害分类体系（受控词表）===
+# 参考标准: GB/T 30237-2013《古代壁画病害与图示》
+# 参考标准: WW/T 0063-2015《馆藏壁画保护修复档案记录规范》
+# 参考文献: Li et al. (2020) "Classification of ancient mural deterioration"
+# 参考文献: Mora et al. (1984) "Conservation of Wall Paintings" (Getty)
+damage_taxonomy:
+  P1_pigment_layer:
+    name: "颜料层病害"
+    name_en: "Pigment Layer Damage"
+    labels: ["起甲", "龟裂", "脱落", "褪色", "变色", "完好"]
+    labels_en: ["flaking", "craquelure", "detachment", "fading", "discoloration", "intact"]
+    default: "完好"
+  P2_ground_layer:
+    name: "地仗层病害"
+    name_en: "Ground Layer Damage"
+    labels: ["空鼓", "酥碱", "裂隙", "粉化", "完好"]
+    labels_en: ["delamination", "powdering_alkali", "cracking", "powdering", "intact"]
+    default: "完好"
+  P3_support_body:
+    name: "支撑体病害"
+    name_en: "Support Body Damage"
+    labels: ["裂隙", "渗水", "变形", "完好"]
+    labels_en: ["structural_crack", "water_seepage", "deformation", "intact"]
+    default: "完好"
+  P4_surface_contamination:
+    name: "表面污染"
+    name_en: "Surface Contamination"
+    labels: ["烟熏", "霉斑", "积尘", "涂写", "无"]
+    labels_en: ["soot", "mold", "dust", "graffiti", "none"]
+    default: "无"
+  severity:
+    levels: ["intact", "mild", "moderate", "severe", "critical"]
+    levels_cn: ["完好", "轻微", "中度", "严重", "濒危"]
+    weights: {"intact": 0.0, "mild": 0.2, "moderate": 0.5, "severe": 0.8, "critical": 1.0}
+
+# === 多引擎配置 ===
+engines:
+  provider_order: ["gemini", "claude", "openai", "qwen"]
+  models:
+    gemini: "gemini-2.5-flash"
+    claude: "claude-sonnet-4-6"
+    openai: "gpt-5.2"
+    qwen: "qwen-vl-max-latest"
+  base_urls:
+    gemini: "https://api.gptsapi.net"
+    claude: "https://api.gptsapi.net"
+    openai: "https://api.gptsapi.net"
+    qwen: "https://dashscope.aliyuncs.com/compatible-mode"
+  api_keys_path: "./api_keys.txt"  # public-release: set your own local key file (one key per line); not distributed. Engines also read keys from env vars (OPENAI_API_KEY / GEMINI_API_KEY / ANTHROPIC_API_KEY / DASHSCOPE_API_KEY).
+  timeout_sec: 60
+  request_delay_sec: 0.5
+  max_retries: 2
+
+# === 共识投票规则 ===
+consensus:
+  min_providers: 2          # 至少 2 个引擎成功才计算共识
+  acceptance_threshold: 0.8  # confidence >= 0.8 且无 schema 警告 → Accepted
+  review_threshold: 0.5      # confidence < 0.5 → review_queue
+  majority_rule: true        # 多数投票制
+
+# === QC 规则 ===
+qc:
+  low_confidence_threshold: 0.5
+  high_risk_threshold: 0.8   # severity=critical 时需 confidence >= 0.8
+  conflict_detection: true    # 检测引擎间分歧
+  schema_strict: true         # 严格受控词表校验
+
+# === 执行参数 ===
+execution:
+  batch_size: 50             # 每批处理数量
+  progress_interval: 10      # 每 N 张打印进度
+  dry_run_count: 10          # dry-run 样本数
+  save_raw_responses: true   # 保存原始 API 返回
+
+# === 输入 ===
+input:
+  tile_manifest: "02_tiles/manifests/tile_manifest_run_20260401_231737_tile_rebuild.csv"
+  tile_image_root: "02_tiles/STEP2_patch/images"
+
+# === 输出目录 ===
+output:
+  base: "04_damage"
+  manifests: "04_damage/manifests"
+  outputs: "04_damage/outputs"
+  raw_responses: "04_damage/outputs/raw_responses"
+  preview: "04_damage/preview"
+  failed: "04_damage/failed"
+  review_queue: "04_damage/review_queue"
+  logs: "04_damage/logs"
+
+# === 数据治理 ===
+governance:
+  require_manifest: true
+  require_run_log: true
+  require_qc: true
+  run_id_format: "run_{YYYYMMDD}_{HHMMSS}_dmg"

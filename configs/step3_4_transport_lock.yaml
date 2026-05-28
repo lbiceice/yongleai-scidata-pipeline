@@ -1,0 +1,78 @@
+##############################################
+# STEP3+STEP4 Transport Lock
+# 本文件是 API 调用路径的唯一权威约束。
+# 所有 runner 脚本启动时必须校验此文件。
+##############################################
+
+version: "1.0.0"
+locked_at: "2026-04-04"
+
+# ── 唯一允许的调用模式 ──
+transport_mode: "python_only"
+endpoint_mode: "chat_completions_only"
+auth_mode: "bearer_only"
+transport_module: "scripts/step3_4_transport.py"
+
+# ── 调用链 ──
+# shell → python3 scripts/step3_4_stageN_*.py → import step3_4_transport → openai.OpenAI SDK
+# Claude Code 不承担正式业务 API 调用，只负责生成/审查脚本。
+
+call_chain:
+  entry: "shell (user)"
+  runner: "scripts/step3_4_stage{1,2,3,4}_*.py"
+  transport: "scripts/step3_4_transport.py"
+  sdk: "openai.OpenAI (Python)"
+  endpoint: "/v1/chat/completions"
+  auth_header: "Authorization: Bearer <key>"
+
+# ── 四引擎统一 ──
+engines:
+  openai:
+    base_url: "https://api.gptsapi.net/v1"
+    endpoint: "/v1/chat/completions"
+    auth: "Bearer"
+    source: "gptsapi.net proxy"
+  gemini:
+    base_url: "https://api.gptsapi.net/v1"
+    endpoint: "/v1/chat/completions"
+    auth: "Bearer"
+    source: "gptsapi.net proxy"
+  claude:
+    base_url: "https://api.gptsapi.net/v1"
+    endpoint: "/v1/chat/completions"
+    auth: "Bearer"
+    source: "gptsapi.net proxy"
+  qwen:
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    endpoint: "/v1/chat/completions"
+    auth: "Bearer"
+    source: "DashScope official (Alibaba Cloud)"
+
+# ── 禁止的调用路径 ──
+forbidden_paths:
+  - path: "/v1/messages"
+    reason: "Anthropic 原生路径，gptsapi 代理不支持"
+  - path: "/v1beta"
+    reason: "Google Gemini 原生路径，gptsapi 代理不支持"
+  - path: "api.anthropic.com"
+    reason: "Anthropic 官方直连，当前 key 为 gptsapi 代理 key"
+  - path: "generativelanguage.googleapis.com"
+    reason: "Google 官方直连，当前 key 为 gptsapi 代理 key"
+
+forbidden_auth:
+  - header: "x-api-key"
+    reason: "Anthropic 原生 auth，gptsapi 统一使用 Bearer"
+  - header: "anthropic-version"
+    reason: "Anthropic 原生 header，OpenAI-compatible 不需要"
+
+forbidden_callers:
+  - caller: "Claude Code / Node.js"
+    reason: "Node undici 经 Shadowrocket VPN 偶发 UND_ERR_SOCKET；正式业务不依赖此路径"
+  - caller: "浏览器 fetch"
+    reason: "不可控的 CORS / proxy / timeout"
+
+# ── 运行时兜底 ──
+runtime_guards:
+  normalize_base_url: true
+  reject_double_v1: true
+  reject_missing_v1: true

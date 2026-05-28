@@ -1,0 +1,88 @@
+# 全局执行策略
+# 创建时间: 2026-04-01
+# 模式: 语义延迟执行 (Semantic Deferred Execution Mode)
+
+# === Step 编号（逻辑顺序，不可修改） ===
+logical_step_order: [1, 2, 3, 4, 5, 6, 7, 8]
+
+# === 实际执行顺序（Step3 延迟） ===
+execution_order_current: [1, 2, 4, 5, 6, 7, 3, 8]
+semantic_mode: "deferred"
+deferred_steps:
+  step3:
+    reason: "特征识别不阻塞损伤/分割/增强/修复流程"
+    execute_after: "step7"
+    purpose: "语义标注、修复结果验证、论文分析"
+    constraint: "不回写覆盖已有数据，仅生成 semantic layer + analysis tables"
+
+# === 各 Step 模型分配 ===
+model_assignments:
+  step4_damage:
+    primary: "Grounding DINO"
+    alternative: "OWL-ViT"
+    prompts: ["crack", "peeling", "loss", "discoloration", "flaking", "erosion"]
+  step5_segmentation:
+    primary: "SAM2"
+    input: "bounding box / point prompt from Step4"
+  step6_superres:
+    primary: "Real-ESRGAN x4"
+    qc_model: "SwinIR"
+  step7_restoration:
+    primary: "LaMa inpainting"
+    input: "segmentation mask from Step5"
+    mode: "pre_semantic"
+    semantic_status: "pending"
+    constraints:
+      - "不允许生成新语义结构"
+      - "不允许推测人物/图像内容"
+      - "只允许基于局部纹理与结构修复"
+  step3_features:
+    primary: "DINOv2"
+    note: "延迟执行，不参与前序 pipeline"
+  step8_summary:
+    tools: ["summary-report-builder", "paper-output-packager"]
+
+# === 效率策略 ===
+efficiency:
+  pilot_size: 50
+  full_batch_after_qc: true
+  progress_interval: 300
+  batch_by: "source_or_split"
+  resume_support: true
+
+# === 硬规则 (2026-04-03 新增) ===
+hard_rules:
+  R1_accuracy_over_throughput:
+    enabled: true
+    max_quality_delta: -0.01
+    benchmark_required: true
+  R2_proposal_final_separation:
+    enabled: true
+    manifest_dual_table: true
+    fields: ["mask_role", "selected_for_dataset", "top_rank"]
+  R3_canary_before_fullbatch:
+    enabled: true
+    canary_size: 50
+    canary_seed: 42
+    pass_criteria:
+      mean_quality: 0.80
+      max_fail_rate: 0.02
+      zero_errors: true
+  R4_review_queue_routing:
+    enabled: true
+    thresholds_ref: "configs/step5_segmentation.yaml → gate"
+  R5_shard_watchdog:
+    enabled: true
+    max_fail_rate_per_shard: 0.05
+    consecutive_shard_fail_stop: 2
+  R6_reproducible_optimization:
+    enabled: true
+    seed: 42
+    deterministic: true
+  R7_evidence_pack:
+    enabled: true
+    required_before_gate: true
+    min_sample_overlays: 5
+  R8_no_hot_modify:
+    enabled: true
+    applies_to: ["running shard scripts", "active run configs", "run directories"]

@@ -1,0 +1,35 @@
+{
+  "title": "YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches",
+  "upload_type": "software",
+  "publication_date": "2026-05-22",
+  "version": "1.0.0",
+  "description": "DOI-pending public software release metadata for the multi-engine candidate-annotation, validation, and packaging pipeline supporting the Scientific Data Data Descriptor for Yongle Palace Taoist mural image patches. The local code package is MIT licensed and ready for public repository publication, but the public GitHub URL, v1.0.0 release tag, and software DOI must still be minted before formal journal submission.",
+  "keywords": [
+    "cultural heritage",
+    "mural painting",
+    "Yongle Palace",
+    "Chaoyuan Tu",
+    "Taoist iconography",
+    "vision-language model",
+    "candidate annotation",
+    "validation workflow",
+    "Scientific Data",
+    "data descriptor"
+  ],
+  "creators": [
+    {
+      "name": "Liang, Bingbing",
+      "affiliation": "Guangzhou College of Technology and Business; Faculty of Fine and Applied Arts, Khon Kaen University (PhD researcher)",
+      "orcid": "https://orcid.org/0009-0007-5344-0594"
+    }
+  ],
+  "license": "mit-license",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "10.5281/zenodo.19718760",
+      "resource_type": "dataset"
+    }
+  ],
+  "notes": "External publication blockers remain: public repository URL, release tag v1.0.0, and software DOI. Do not upload this metadata as a final public record until those placeholders are closed."
+}

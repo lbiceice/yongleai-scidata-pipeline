@@ -1,0 +1,42 @@
+# Smoke10 执行计划
+# 10 张分层冒烟测试 × 4 引擎 = 80 API 调用
+
+version: "1.0.0"
+created: "2026-04-05"
+
+# ── 并发与限流 ──
+concurrency: 2
+rate_limits:
+  gptsapi:  # openai, gemini, claude
+    min_interval_ms: 800
+    max_inflight: 2
+  dashscope:  # qwen
+    min_interval_ms: 600
+    max_inflight: 1
+
+# ── 功能开关 ──
+second_pass: false
+grounding_dino: false
+
+# ── 样本集 ──
+samples:
+  - {id: yl_raw_003_1432_3938, stratum: intact_background, mode: thumb}
+  - {id: yl_raw_002_716_1790, stratum: intact_background, mode: thumb}
+  - {id: yl_raw_003_25776_2148, stratum: figure_confusion, mode: thumb}
+  - {id: yl_raw_002_7160_4296, stratum: figure_confusion, mode: thumb}
+  - {id: yl_raw_001_15752_3938, stratum: headgear_artifact, mode: thumb}
+  - {id: yl_raw_004_358_1432, stratum: headgear_artifact, mode: thumb}
+  - {id: yl_raw_001_10382_1790, stratum: soot_dust_mold, mode: thumb}
+  - {id: yl_raw_002_3938_2506, stratum: soot_dust_mold, mode: thumb}
+  - {id: yl_raw_003_24702_4654, stratum: mixed_damage_SENTINEL, mode: full}
+  - {id: yl_raw_004_2506_5728, stratum: mixed_damage_SENTINEL, mode: full}
+
+# ── 通过阈值 ──
+pass_thresholds:
+  schema_valid_rate: 0.90
+  cross_dim_valid_rate: 0.95
+  single_engine_success: 0.70
+
+# ── 通过后动作 ──
+on_pass: "进入 stratified pilot (20 patches × 4 engines)"
+on_fail: "修复失败项后重跑"

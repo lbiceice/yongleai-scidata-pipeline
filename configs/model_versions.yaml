@@ -1,0 +1,46 @@
+# STEP5 模型后端版本记录
+# 生成时间: 2026-04-03
+# 生成方式: T2 自动检测 + smoke test
+
+environment:
+  python: "3.13.12"
+  torch: "2.11.0"
+  torchvision: "0.26.0"
+  device: "mps"  # Apple Metal Performance Shaders
+  cuda_available: false
+  mps_available: true
+
+primary_backend:
+  backend_name: "SAM2.1"
+  model_name: "sam2.1_hiera_large"
+  package_version: "1.1.0"
+  config_file: "configs/sam2.1/sam2.1_hiera_l.yaml"
+  checkpoint_path: "/Volumes/小满/YLMural-Dataset-v1.0/scripts/weights/sam2.1_hiera_large.pt"
+  checkpoint_source: "local (YLMural-Dataset-v1.0/scripts/weights/)"
+  checkpoint_size_mb: 856
+  load_success: true
+  load_time_s: 2.1
+
+fallback_backend:
+  backend_name: "SAM1"
+  model_name: "sam_vit_h"
+  checkpoint_path: "${WEIGHTS_DIR}/sam_vit_h_4b8939.pth"  # public-release: set WEIGHTS_DIR to your local SAM checkpoint directory
+  status: "available (not tested)"
+
+smoke_test:
+  patch_path: "/Volumes/小满/yongle_palace_dataset/02_tiles/STEP2_patch/images/test/yl_raw_002_0_0.png"
+  patch_shape: [512, 512, 3]
+  masks_generated: 3
+  top_mask_area: 199136
+  top_mask_predicted_iou: 0.9850
+  top_mask_stability_score: 0.9675
+  inference_time_s: 8.1
+  result: "PASS"
+
+dependencies:
+  pycocotools: "installed"
+  scikit-image: "0.26.0"
+  pandas: "3.0.2"
+  pyyaml: "6.0.3"
+  matplotlib: "3.10.8"
+  scipy: "1.17.1"

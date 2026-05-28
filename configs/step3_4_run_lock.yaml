@@ -1,0 +1,85 @@
+##############################################
+# STEP3+STEP4 Run Lock
+# 本文件锁定当前 pipeline 的执行约束。
+# 任何 runner 脚本启动前必须读取并校验此文件。
+##############################################
+
+version: "1.0.0"
+created: "2026-04-04"
+
+# ── Transport ──
+transport:
+  module: "scripts/step3_4_transport.py"
+  interface: "OpenAI-compatible /v1/chat/completions"
+  auth: "Bearer"
+  normalize_base_url: true
+  node_undici_blocked: true
+  legacy_paths_blocked:
+    - "/v1/messages"
+    - "/v1beta"
+    - "api.anthropic.com (native)"
+    - "generativelanguage.googleapis.com (native)"
+
+# ── Engines ──
+engines:
+  openai:
+    model: "gpt-4o"
+    base_url: "https://api.gptsapi.net/v1"
+    temperature: 0.10
+    source: "gptsapi.net proxy"
+  gemini:
+    model: "gemini-2.5-flash"
+    base_url: "https://api.gptsapi.net/v1"
+    temperature: 0.05
+    source: "gptsapi.net proxy"
+  claude:
+    model: "claude-sonnet-4-6"
+    base_url: "https://api.gptsapi.net/v1"
+    temperature: 0.15
+    source: "gptsapi.net proxy"
+  qwen:
+    model: "qwen-vl-max-latest"
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    temperature: 0.08
+    source: "DashScope official"
+
+# ── Rate Limit (safe mode) ──
+rate_limit:
+  concurrency: 1
+  max_inflight_per_engine: 1
+  min_interval_ms: 1500
+  max_rpm: 20
+
+# ── Retry ──
+retry:
+  on_429: { strategy: "exponential_backoff", max: 3, base_wait_s: 2 }
+  on_5xx: { strategy: "fixed_wait", max: 2, wait_s: 2 }
+  on_socket: { strategy: "fixed_wait", max: 1, wait_s: 3 }
+  on_parse: { strategy: "immediate", max: 1 }
+
+# ── Scope ──
+scope:
+  allowed_steps: ["STEP3", "STEP4"]
+  forbidden_dirs:
+    - "05_segmentation"
+    - "06_superres"
+    - "07_restoration"
+  output_roots:
+    step3: "/Volumes/小满/yongle_palace_dataset/03_features"
+    step4: "/Volumes/小满/yongle_palace_dataset/04_damage"
+  env_file: "/Volumes/小满/yongle_palace_dataset/.env.step4.local"
+
+# ── Taxonomy versions ──
+taxonomy:
+  step3_hsgf: "v1.0.0"
+  step4_gbt: "v1.0.0"
+  confusion_pairs: "v1.0.0"
+  alias_map: "v1.0.0"
+  abstain_rules: "v1.0.0"
+  second_pass_policy: "v1.0.0"
+
+# ── Prompt ──
+prompt:
+  version: "v1.0.0-pilot"
+  system_prompt_hash: null   # 由 stage1 填入
+  user_prompt_hash: null     # 由 stage1 填入

@@ -1,0 +1,64 @@
+# 永乐宫壁画数据集 - 统一命名规范
+# 版本: 1.0.0
+# 创建时间: 2026-04-01
+# 维护者: claude_code
+
+# === ID 命名体系 ===
+id_schema:
+  # 原图 ID
+  raw_image: "mural_{wall}_{image_index}"
+  # 切片 ID
+  tile: "tile_{source_id}_{x}_{y}_{size}_{stride}"
+  # 特征结果 ID
+  feature: "feat_{tile_id}"
+  # 损伤结果 ID
+  damage: "dmg_{tile_id}"
+  # 分割结果 ID
+  segmentation: "seg_{tile_id}"
+  # 修复结果 ID (Step 6 = 破损修复)
+  restoration: "rst_{tile_id}"
+  # 超分辨率结果 ID (Step 7 = 超分辨率增强)
+  superres: "sr_{tile_id}"
+  # 汇总记录 ID
+  summary: "sum_{batch_or_date}"
+
+# === 追溯字段要求 ===
+traceability_fields:
+  required:
+    - source_image_path
+    - source_id
+    - wall_region
+    - coordinates_xy
+    - step_version
+    - run_id
+  optional:
+    - batch_id
+    - operator
+    - timestamp
+    - parent_id
+
+# === 文件命名规则 ===
+file_naming:
+  manifest: "{step_dir}/manifests/manifest_{run_id}.csv"
+  manifest_jsonl: "{step_dir}/manifests/manifest_{run_id}.jsonl"
+  log: "logs/{step_name}_{run_id}.log"
+  preview: "{step_dir}/preview/{object_id}_preview.jpg"
+  failed: "{step_dir}/failed/{object_id}_failed.json"
+  review: "{step_dir}/review_queue/{object_id}_review.json"
+
+# === Step 顺序定义（唯一标准） ===
+step_order:
+  step1: { name: "导入", dir: "01_import", prefix: "imp" }
+  step2: { name: "切分", dir: "02_tiles", prefix: "tile" }
+  step3: { name: "特征识别", dir: "03_features", prefix: "feat" }
+  step4: { name: "损伤识别", dir: "04_damage", prefix: "dmg" }
+  step5: { name: "语义分割", dir: "05_segmentation", prefix: "seg" }
+  step6: { name: "破损壁画修复", dir: "06_restoration", prefix: "rst" }
+  step7: { name: "超分辨率增强", dir: "07_superres", prefix: "sr" }
+  step8: { name: "汇总模块", dir: "08_summary", prefix: "sum" }
+
+# === run_id 格式 ===
+run_id_format: "run_{YYYYMMDD}_{HHMMSS}_{step_prefix}"
+
+# === 版本号 ===
+config_version: "1.0.0"

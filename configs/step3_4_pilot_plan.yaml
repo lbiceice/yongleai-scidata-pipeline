@@ -1,0 +1,63 @@
+##############################################
+# STEP3+STEP4 Stratified Pilot Plan
+##############################################
+
+version: "1.0.0"
+created: "2026-04-04"
+
+# ── Pilot scope ──
+pilot:
+  total_samples: 20
+  source_split: "train"
+  split_manifest: "02_tiles/manifests/split_manifest_run_20260401_231737_tile_rebuild.csv"
+  patch_dir: "02_tiles/STEP2_patch/images/train"
+  engines: ["openai", "gemini", "claude", "qwen"]
+  transport: "scripts/step3_4_transport.py"
+  safe_mode: "configs/pilot_transport_safe_mode.yaml"
+
+# ── Stratification (image-statistics proxy) ──
+# 因为没有先验标签，用图像统计量作为分层代理
+strata:
+  - name: "intact_background"
+    count: 4
+    proxy: "mean > Q75, edge_var < Q30"
+    step3_target: "云气装饰 / 背景留白"
+    step4_target: "无病害 / intact"
+
+  - name: "ink_line_confusion"
+    count: 4
+    proxy: "edge_var > Q90"
+    step3_target: "八主神 / 帝君 / 星君 + 冠饰/法器细节"
+    step4_target: "墨线/衣纹/云纹易误判为裂隙/龟裂"
+
+  - name: "soot_dust_mold"
+    count: 4
+    proxy: "mean < Q15, std > Q30"
+    step3_target: "保存状态复杂 (严重损伤/中度损伤)"
+    step4_target: "烟熏/积尘/霉斑易混"
+
+  - name: "flaking_fading"
+    count: 4
+    proxy: "mean Q30-Q70, std > Q70"
+    step3_target: "冠饰/法器细节丰富区域"
+    step4_target: "起甲/脱落/褪色/变色"
+
+  - name: "mixed_severe"
+    count: 4
+    proxy: "mean < Q40, edge_var > Q60, std > Q60"
+    step3_target: "古代补绘 / 复杂保存状态"
+    step4_target: "中重度混合病害 / 空鼓/裂隙高歧义"
+
+# ── Pass criteria ──
+pass_criteria:
+  schema_valid_rate: 0.95
+  vocab_valid_rate: 0.95
+  cross_dim_valid_rate: 0.98
+  max_review_ratio: 0.25
+  min_ready_engines: 2
+
+# ── On failure ──
+on_fail: "stop, output fix report, do NOT enter train"
+
+# ── On pass ──
+on_pass: "generate go report, prepare shard_001 plan only"

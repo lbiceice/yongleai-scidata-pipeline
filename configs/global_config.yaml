@@ -1,0 +1,108 @@
+# 永乐宫壁画数据集 - 全局配置
+# 版本: 1.0.0
+# 创建时间: 2026-04-01
+
+# === 项目基本信息 ===
+project:
+  name: "永乐宫壁画数据集工程"
+  version: "1.0.0"
+  root: "L:/yongle_palace_dataset"
+  raw_source: "L:/raw"
+  drive_label: "小满"
+  drive_letter: "L:"
+  operator: "claude_code"
+  supervisor: "vincent"
+
+# === 数据治理 ===
+governance:
+  raw_readonly: true
+  require_manifest: true
+  require_run_id: true
+  require_logging: true
+  require_qc: true
+  require_failed_tracking: true
+  require_review_queue: true
+  silent_discard_forbidden: true
+
+# === Step 2 切分默认参数 ===
+tiling:
+  patch_size: 512
+  stride: 256
+  overlap: 256
+  edge_handling: "pad"  # pad | crop | discard
+  min_content_ratio: 0.1  # 最小有效内容占比
+  output_format: "png"
+
+# === Step 3 特征识别 ===
+feature_recognition:
+  engine: "pending"  # 待配置
+  confidence_threshold: 0.5
+  low_confidence_action: "review_queue"
+  output_fields:
+    - category
+    - sub_category
+    - confidence
+    - engine
+    - raw_response
+    - normalized_response
+
+# === Step 4 损伤识别 ===
+damage_recognition:
+  engine: "pending"
+  confidence_threshold: 0.5
+  output_fields:
+    - damage_type
+    - severity
+    - area_estimate
+    - priority
+    - confidence
+    - reason
+    - raw_response
+
+# === Step 5 语义分割 ===
+segmentation:
+  engine: "pending"
+  output_fields:
+    - mask_path
+    - overlay_path
+    - pixel_area
+    - region_ratio
+    - iou: "unavailable"
+    - dice: "unavailable"
+
+# === Step 6 破损壁画修复 (Inpainting/Restoration) ===
+restoration:
+  engine: "pending"
+  input_chain:
+    - source_tile
+    - damage_info
+    - segmentation_mask
+  output_comparison: true
+  candidate_count: 1
+
+# === Step 7 超分辨率增强 (Super-Resolution) ===
+superres:
+  engine: "pending"
+  scale_factor: 2
+  eligibility_criteria:
+    min_damage_ratio: 0.0
+    max_damage_ratio: 1.0
+    min_resolution: 0
+  input_chain:
+    - source_tile
+    - restoration_result_optional
+  output_comparison: true
+
+# === 日志配置 ===
+logging:
+  run_log: "logs/run.log"
+  error_log: "logs/error.log"
+  qc_log: "logs/qc.log"
+  data_governance_log: "logs/data_governance.log"
+  session_resume_log: "logs/session_resume.log"
+
+# === 实验策略 ===
+experiment:
+  mode: "dry_run"  # dry_run | small_batch | full
+  dry_run_count: 5
+  small_batch_count: 20
