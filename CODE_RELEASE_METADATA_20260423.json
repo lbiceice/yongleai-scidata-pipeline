@@ -1,15 +1,12 @@
 {
   "submission_stage_version": "v1.0.0-submission-review",
-  "public_code_candidate_version": "v1.0.0",
-  "intended_public_release_tag": "v1.0.0",
+  "public_code_candidate_version": "v1.0.1",
+  "intended_public_release_tag": "v1.0.1",
   "commit": "85269cc5b52cc59fe8112ba6b76bc93ebae7492b",
   "license": "MIT",
   "metadata_aligned_by_paperspine_m3": "2026-05-23",
-  "software_doi_status": "pending external Zenodo/GitHub publication",
-  "public_repository_status": "pending external publication",
-  "software_release_blockers": [
-    "public repository URL not yet assigned",
-    "release tag v1.0.0 not yet pushed",
-    "software DOI not yet minted"
-  ]
+  "software_doi_status": "published: 10.5281/zenodo.20430149",
+  "software_concept_doi": "10.5281/zenodo.20430148",
+  "public_repository_status": "published: https://github.com/lbiceice/yongleai-scidata-pipeline",
+  "software_release_blockers": []
 }

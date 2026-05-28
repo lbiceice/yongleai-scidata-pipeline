@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches"
-message: "Please cite both the dataset (Zenodo DOI 10.5281/zenodo.19718760) and this software release. A Zenodo software DOI should be added after archiving release v1.0.1."
+message: "Please cite both the dataset (Zenodo DOI 10.5281/zenodo.19718760) and this software release (Zenodo DOI 10.5281/zenodo.20430149)."
 type: software
 authors:
   - family-names: Liang
@@ -25,10 +25,17 @@ keywords:
   - Krippendorff's alpha
 license: MIT
 repository-code: "https://github.com/lbiceice/yongleai-scidata-pipeline"
+doi: "10.5281/zenodo.20430149"
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.20430149"
+    description: "Software version DOI for release v1.0.1."
+  - type: doi
+    value: "10.5281/zenodo.20430148"
+    description: "Software concept DOI for all versions."
+  - type: doi
     value: "10.5281/zenodo.19718760"
-    description: "Companion dataset DOI; publication status must be confirmed before journal submission."
+    description: "Companion dataset DOI."
 references:
   - type: data
     title: "YongleAI-SciData: Multi-engine candidate annotations and metadata for Yongle Palace Taoist mural image patches"
@@ -46,4 +53,5 @@ preferred-citation:
       orcid: "https://orcid.org/0009-0007-5344-0594"
   year: 2026
   version: "1.0.1"
+  doi: "10.5281/zenodo.20430149"
   url: "https://github.com/lbiceice/yongleai-scidata-pipeline/releases/tag/v1.0.1"

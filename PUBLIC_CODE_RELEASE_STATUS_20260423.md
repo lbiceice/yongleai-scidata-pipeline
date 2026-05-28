@@ -5,7 +5,7 @@ Metadata alignment update: 2026-05-23
 
 ## Current role
 
-This package is a public-code-release candidate derived from the frozen reviewer snapshot `reviewer_code_package_20260412`. The local release metadata is now aligned with the PaperSpine M3 manuscript package and uses the intended public software version `v1.0.0`.
+This package is a public-code-release candidate derived from the frozen reviewer snapshot `reviewer_code_package_20260412`. The local release metadata is now aligned with the PaperSpine M3 manuscript package and uses DOI-backed public software release `v1.0.1`.
 
 ## What is already ready
 
@@ -19,12 +19,12 @@ This package is a public-code-release candidate derived from the frozen reviewer
 - the frozen commit hash is recorded (`85269cc5b52cc59fe8112ba6b76bc93ebae7492b`);
 - citation and Zenodo metadata candidates are present and aligned to the manuscript/dataset title vocabulary.
 
-## What remains open
+## External publication closure
 
-1. **Public repository location**: a live GitHub or equivalent public repository URL is still missing.
-2. **Release tag**: the public repository has not yet been tagged as `v1.0.0`.
-3. **Software DOI**: no DOI-backed software archive has been issued yet.
+1. **Public repository location**: `https://github.com/lbiceice/yongleai-scidata-pipeline`.
+2. **Release tag**: `v1.0.1` (with `v1.0.0` retained as the first public GitHub release).
+3. **Software DOI**: version DOI `10.5281/zenodo.20430149`; concept DOI `10.5281/zenodo.20430148`.
 
 ## Practical interpretation
 
-The code-availability story is locally staged and license-ready, but not externally published. The remaining blockers are repository-hosting and publication actions rather than missing local packaging work.
+The code-availability story is externally published and DOI-backed. The remaining submission-side work is to keep manuscripts and cover letters synchronized with the public repository URL, release tag, and software DOI.

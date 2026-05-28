@@ -10,7 +10,7 @@ Local metadata was aligned on 2026-05-23 with the PaperSpine M3 manuscript packa
 
 `YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches`
 
-The package is public at `https://github.com/lbiceice/yongleai-scidata-pipeline`. Release `v1.0.0` remains the first public GitHub release; release `v1.0.1` is the Zenodo metadata-fix release intended for DOI-backed software archiving.
+The package is public at `https://github.com/lbiceice/yongleai-scidata-pipeline`. Release `v1.0.0` remains the first public GitHub release; release `v1.0.1` is the DOI-backed Zenodo metadata-fix release archived as software DOI [`10.5281/zenodo.20430149`](https://doi.org/10.5281/zenodo.20430149). The all-versions concept DOI is [`10.5281/zenodo.20430148`](https://doi.org/10.5281/zenodo.20430148).
 
 Companion dataset DOI: [`10.5281/zenodo.19718760`](https://doi.org/10.5281/zenodo.19718760).
 
@@ -56,8 +56,7 @@ root) before running.
 - caches and compiled artifacts
 - large intermediate outputs
 - the `.git` directory
-- a DOI-backed software record, until Zenodo completes GitHub-release archiving
 
 ## Use
 
-Readers should start with `PUBLIC_CODE_RELEASE_STATUS_20260423.md` and `MINIMAL_REPRODUCTION_WORKFLOW.md`, then inspect the referenced scripts together with `checksums_sha256.tsv`, `File_Inventory.csv`, `PACKAGE_SUMMARY.json`, and `CODE_RELEASE_METADATA_20260423.json`. The underlying frozen submission-stage snapshot is versioned internally as `v1.0.0-submission-review`. The public repository URL and `v1.0.1` tag are now available; the remaining external closure item is the DOI-backed Zenodo software archive.
+Readers should start with `PUBLIC_CODE_RELEASE_STATUS_20260423.md` and `MINIMAL_REPRODUCTION_WORKFLOW.md`, then inspect the referenced scripts together with `checksums_sha256.tsv`, `File_Inventory.csv`, `PACKAGE_SUMMARY.json`, and `CODE_RELEASE_METADATA_20260423.json`. The underlying frozen submission-stage snapshot is versioned internally as `v1.0.0-submission-review`. The public repository URL, `v1.0.1` tag, and DOI-backed Zenodo software archive are now available.
