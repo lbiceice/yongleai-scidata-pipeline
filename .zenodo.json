@@ -20,7 +20,7 @@
     {
       "name": "Liang, Bingbing",
       "affiliation": "Guangzhou College of Technology and Business; Faculty of Fine and Applied Arts, Khon Kaen University (PhD researcher)",
-      "orcid": "https://orcid.org/0009-0007-5344-0594"
+      "orcid": "0009-0007-5344-0594"
     }
   ],
   "license": "mit-license",
@@ -28,6 +28,7 @@
     {
       "relation": "isSupplementTo",
       "identifier": "10.5281/zenodo.19718760",
+      "scheme": "doi",
       "resource_type": "dataset"
     }
   ],

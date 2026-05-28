@@ -10,7 +10,7 @@ Local metadata was aligned on 2026-05-23 with the PaperSpine M3 manuscript packa
 
 `YongleAI public code release: multi-engine candidate-annotation and validation pipeline for Yongle Palace Taoist mural image patches`
 
-The package is staged at `https://github.com/lbiceice/yongleai-scidata-pipeline` with release tag `v1.0.0`. Before formal journal submission, publish the GitHub release after enabling Zenodo-GitHub integration and add the resulting Zenodo software DOI.
+The package is public at `https://github.com/lbiceice/yongleai-scidata-pipeline` with release tag `v1.0.0`. The GitHub release has been published; the DOI-backed Zenodo software archive remains the remaining external closure item until Zenodo exposes the software DOI.
 
 Companion dataset DOI: [`10.5281/zenodo.19718760`](https://doi.org/10.5281/zenodo.19718760).
 
@@ -56,7 +56,7 @@ root) before running.
 - caches and compiled artifacts
 - large intermediate outputs
 - the `.git` directory
-- a DOI-backed software record
+- a DOI-backed software record, until Zenodo completes GitHub-release archiving
 
 ## Use
 
